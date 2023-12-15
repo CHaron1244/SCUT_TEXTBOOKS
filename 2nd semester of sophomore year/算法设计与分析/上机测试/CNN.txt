@@ -1,0 +1,70 @@
+#include <iostream>
+#include<iomanip>
+#include<algorithm>
+#include<string>
+#include<vector>
+#include<cmath>
+#include<queue>
+#include<map>
+#include<stack>
+#include<fstream>
+#include<algorithm>
+
+using namespace std;
+typedef long long ll;
+const ll mod = 1e9+7;
+const ll inf = 0x3f3f3f3f;
+int dp[1000005];
+void solution(int n,int m) {
+ int w;
+ for (int i = 0; i < n; i++) {
+  scanf("%d", &w);
+  for (int j = m; j >= w; j--)
+   dp[j] = max(dp[j], dp[j - w] + w);
+ }
+}
+int main()
+{
+ int n, m;
+ scanf("%d %d", &n, &m);
+ int tag = n * 3 / 10;
+ solution(m, n);
+ int res = inf;
+ for (int i = tag; i < n; i++)
+ {
+  if (abs(dp[i]-tag)<res)
+  {
+   res = abs(dp[i] - tag);
+  }
+  if (!res)break;
+ }
+ printf("%d", res);
+}
+
+//CNN
+#include<iostream>
+#include<vector>
+#include<stdio.h>
+#include<string>
+using namespace std;
+int dp[1000010]={0};//dp[i]--容量为i-->最小值
+int main()
+{
+	int N,M;
+	cin>>N>>M;
+	vector<int> arr(M,0);
+	for(int i=0;i<M;i++) cin>>arr[i];
+	int m=10000000,tar=N/10*3,h=N/10*6;
+	for(int i=0;i<M;i++)
+	{
+		for(int j=h;j>=arr[i];j--)
+		{
+			dp[j]=max(dp[j-arr[i]]+arr[i],dp[j]);
+			m=std::min(abs(dp[j]-tar),m);
+		}
+	}
+	cout<<m;
+	return 0;
+ } 
+
+

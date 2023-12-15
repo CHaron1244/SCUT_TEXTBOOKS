@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<truthTable>
+  <variables>
+    <variable name="A"/>
+    <variable name="B"/>
+    <variable name="C"/>
+    <variable name="D"/>
+  </variables>
+  <results>
+    <result>
+      <name>dp</name>
+      <values class="BoolTable">
+        <table>AAAAAAAAAAAAAAAAAAAAAA==</table>
+      </values>
+    </result>
+    <result>
+      <name>a</name>
+      <values class="BoolTable">
+        <table>AQABAQABAQEBAQEAAQABAQ==</table>
+      </values>
+    </result>
+    <result>
+      <name>b</name>
+      <values class="BoolTable">
+        <table>AQEBAQEAAAEBAQEAAAEAAA==</table>
+      </values>
+    </result>
+    <result>
+      <name>c</name>
+      <values class="BoolTable">
+        <table>AQEAAQEBAQEBAQEBAAEAAA==</table>
+      </values>
+    </result>
+    <result>
+      <name>d</name>
+      <values class="BoolTable">
+        <table>AQABAQABAQABAQABAQEBAA==</table>
+      </values>
+    </result>
+    <result>
+      <name>e</name>
+      <values class="BoolTable">
+        <table>AQABAAAAAQABAAEBAQEBAQ==</table>
+      </values>
+    </result>
+    <result>
+      <name>f</name>
+      <values class="BoolTable">
+        <table>AQAAAAEBAQABAQEBAQABAQ==</table>
+      </values>
+    </result>
+    <result>
+      <name>g</name>
+      <values class="BoolTable">
+        <table>AAABAQEBAQABAQEBAAEBAQ==</table>
+      </values>
+    </result>
+  </results>
+</truthTable>

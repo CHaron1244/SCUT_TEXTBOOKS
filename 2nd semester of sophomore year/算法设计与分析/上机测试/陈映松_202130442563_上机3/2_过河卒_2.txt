@@ -1,0 +1,103 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long n,m,hx,hy;
+long long dx[9]={0,2,1,-1,-2,-2,-1,1,2};//马 
+long long dy[9]={0,1,2,2,1,-1,-2,-2,-1};
+long long fx[3]={0,1,0};//卒 
+long long fy[3]={0,0,1};
+long long cnt=0;//输出结果 
+bool vis[21][21];//标记是否走过  
+long long dp[21][21];
+queue < pair<int,int> > q;
+void bfs(){
+	while(!q.empty()){
+		int xx=q.front().first,yy=q.front().second;
+		q.pop();
+		for(int i=1;i<=2;++i){//两个方向 
+			int u=xx+fx[i],v=yy+fy[i];
+			if(u>=0&&u<=n&&v>=0&&v<=m)//没有越界
+				dp[u][v]+=dp[xx][yy];
+			if(u>=0&&u<=n&&v>=0&&v<=m&&vis[u][v] == 0) {	
+				vis[u][v]=1;
+				q.push(make_pair(u,v));
+			}		
+		}
+	}
+}
+int main()
+{
+	cin>>n>>m>>hx>>hy;
+	for(int i = 0;i<=8;i++)//给马能到的位置置vis为1
+		if(hx+dx[i]>=0&&hx+dx[i]<=n)
+			if(hy+dy[i]>=0&&hy+dy[i]<=m)//这个点在图中 
+				vis[hx+dx[i]][hy+dy[i]] = 1;
+	q.push(make_pair(0,0));
+	dp[0][0]=1;
+	vis[0][0] = 1;//已经访问 
+	bfs();
+	cout<<dp[n][m]<<endl;
+	return 0;
+}
+
+
+
+
+
+#include <bits/stdc++.h>
+#define ll long long
+
+ll dp[21][21];
+int fx[9]={0,2,1,-1,-2,-2,-1,1,2};
+int fy[9]={0,1,2,2,1,-1,-2,-2,-1};
+bool vis[21][21];
+ll work(int x,int y){
+	if(x<0||y<0||vis[x][y]) return 0;
+	if(dp[x][y]) return dp[x][y];
+	else return dp[x][y]=work(x-1,y)+work(x,y-1);
+}
+int main(){
+	int n,m,x,y;
+	scanf("%d%d%d%d",&n,&m,&x,&y);
+	dp[0][0]=1;
+	for(int i=0;i<=8;++i){
+		int xx=x+fx[i],yy=y+fy[i];
+		if(xx<0||yy<0||xx>n||y>m) continue;
+		vis[xx][yy]=1;
+	}
+	printf("%lld",work(n,m));
+	return 0;
+} 
+
+
+#include <bits/stdc++.h>
+#define ll long long
+inline int read(){
+    int num = 0; char c = getchar();
+    while(!isdigit(c)) c = getchar();
+    while(isdigit(c)) num = (num << 1) + (num << 3) + (c ^ '0'), c = getchar();
+    return num;
+}
+
+int bx, by, mx, my;
+ll f[30];
+
+inline bool check(int x, int y) {
+    if(x == mx && y == my) return 1;
+    return (std::abs(mx - x) + std::abs(my - y) == 3) && (std::max ((std::abs(mx - x)), std::abs(my - y)) == 2);
+}
+
+int main(){
+    bx = read() + 2, by = read() + 2, mx = read() + 2, my = read() + 2;
+    f[2] = 1;
+    for(int i = 2; i <= bx; i++){
+        for(int j = 2; j <= by; j++){
+            if(check(i, j)){
+                f[j] = 0;
+                continue;
+            }
+            f[j] += f[j - 1];
+        }
+    }
+    printf("%lld\n", f[by]);
+    return 0;
+} 

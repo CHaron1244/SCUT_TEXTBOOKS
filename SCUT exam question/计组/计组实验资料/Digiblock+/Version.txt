@@ -1,0 +1,5 @@
+Digiblock
+
+POM-Version:       1.0-SNAPSHOT
+Build Git Version: v0.24-111-g98aeae1-dirty
+Build Time:        2020-06-17 02:38

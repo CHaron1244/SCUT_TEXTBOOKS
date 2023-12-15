@@ -1,0 +1,9 @@
+B echo 
+BRK
+alpha:BL bravo
+NOP
+bravo:NOP
+BR X30
+BRK
+echo:B.MI alpha
+BRK

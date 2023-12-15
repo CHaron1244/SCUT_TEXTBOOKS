@@ -1,0 +1,77 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <algorithm>
+#include <cstdlib>
+#include <ctime>
+#include <fstream>
+using namespace std;
+int read() {
+	int x = 0, f = 1;
+	char c = getchar();
+	while (c < '0' || c > '9') {
+		if (c == '-') f = -1;
+		c = getchar();
+	}
+	while (c >= '0' && c <= '9') {
+		x = x * 10 + c - '0';
+		c = getchar();
+	}
+	return x * f;
+}
+const int _ = 1000005;
+int p[_], c[_], a[_], b[_], v[_], f[_];
+int N, M, cnt, t;
+int main() {
+	N = read(), M = read();
+//	ofstream ofs("input1.in");
+//	freopen("output1.out", "w", stdout);
+//	srand(time(NULL));
+//	M = 5000;
+
+	for (int i = 1; i < M; ++i) {
+		p[i] = read();
+		// p[i] = rand() % 150 + 50;
+		// N += p[i];
+
+		c[p[i]]++;
+	}
+	// int t = 10 - N % 10;
+	// N += t;
+	int t = read();
+	p[M] = t;
+	c[p[M]]++;	
+//	ofs << N << ' ' << M << '\n';
+//	for (int i = 1; i <= M; ++i) {
+//		ofs << p[i] << ' ';
+//	}
+	for (int i = 1; i < _; ++i) {
+		if (c[i]) {
+			a[++t] = i;
+			b[t] = c[i];
+		}
+	}
+	N = (N / 10) * 3;
+	for (int i = 1; i <= t; ++i) {
+		int k = 1;
+		while (k <= b[i]) {
+			v[++cnt] = k * a[i];
+			b[i] -= k;
+			k <<= 1;
+		}
+		if (b[i] > 0) {
+			v[++cnt] = b[i] * a[i];
+		}
+	}
+	f[0] = 1;
+	for (int i = 1; i <= cnt; ++i) {
+		for (int j = N + a[t]; j >= v[i]; --j) {
+			f[j] |= f[j - v[i]];
+		}
+	}
+	for (int i = 0; i <= a[t]; ++i) {
+		if ((N + i < _ && f[N + i]) || (N - i >= 0 && f[N - i])) {
+			printf("%d\n", i);
+			return 0;
+		}
+	}
+}
